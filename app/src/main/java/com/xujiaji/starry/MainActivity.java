@@ -2,9 +2,11 @@ package com.xujiaji.starry;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 import com.xujiaji.msg.SAlert;
 import com.xujiaji.msg.SLog;
+import com.xujiaji.msg.SToast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -13,22 +15,31 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        SLog.i_d("江诗丹顿撒酒疯两款手机");
+        SLog.i_d("Hello world!!!");
+    }
 
+    public void onClickAlert(View view) {
         SAlert.with(this)
-                .message("测试测试")
-                .yes(new SAlert.Callback() {
+                .title("title")
+                .message("test content")
+                .yes(new SAlert.Callback("confirm") {
+
                     @Override
                     public void call() {
-
+                        SToast.normal("clicked confirm");
                     }
                 })
-                .no(new SAlert.Callback() {
+                .no(new SAlert.Callback("cancel") {
                     @Override
                     public void call() {
-
+                        SToast.normal("clicked cancel");
                     }
                 })
                 .normal();
+
+    }
+
+    public void onClickToast(View view) {
+        SToast.success("SToast");
     }
 }

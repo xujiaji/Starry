@@ -1,0 +1,21 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/jiajixu/AndroidStudioProjects/Starry/sweet-alert-dialog/src/main/AndroidManifest.xml:1:1-7:12
+INJECTED from /Users/jiajixu/AndroidStudioProjects/Starry/sweet-alert-dialog/src/main/AndroidManifest.xml:1:1-7:12
+INJECTED from /Users/jiajixu/AndroidStudioProjects/Starry/sweet-alert-dialog/src/main/AndroidManifest.xml:1:1-7:12
+	package
+		ADDED from /Users/jiajixu/AndroidStudioProjects/Starry/sweet-alert-dialog/src/main/AndroidManifest.xml:2:1-31
+		INJECTED from /Users/jiajixu/AndroidStudioProjects/Starry/sweet-alert-dialog/src/main/AndroidManifest.xml
+		INJECTED from /Users/jiajixu/AndroidStudioProjects/Starry/sweet-alert-dialog/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/jiajixu/AndroidStudioProjects/Starry/sweet-alert-dialog/src/main/AndroidManifest.xml:1:11-69
+application
+ADDED from /Users/jiajixu/AndroidStudioProjects/Starry/sweet-alert-dialog/src/main/AndroidManifest.xml:5:1-16
+uses-sdk
+INJECTED from /Users/jiajixu/AndroidStudioProjects/Starry/sweet-alert-dialog/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/jiajixu/AndroidStudioProjects/Starry/sweet-alert-dialog/src/main/AndroidManifest.xml
+INJECTED from /Users/jiajixu/AndroidStudioProjects/Starry/sweet-alert-dialog/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/jiajixu/AndroidStudioProjects/Starry/sweet-alert-dialog/src/main/AndroidManifest.xml
+		ADDED from /Users/jiajixu/AndroidStudioProjects/Starry/sweet-alert-dialog/src/main/AndroidManifest.xml
+		INJECTED from /Users/jiajixu/AndroidStudioProjects/Starry/sweet-alert-dialog/src/main/AndroidManifest.xml

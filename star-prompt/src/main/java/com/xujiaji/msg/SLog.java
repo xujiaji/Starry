@@ -9,62 +9,68 @@ import java.util.Locale;
  */
 public class SLog {
 
+    public static boolean LOG_SWITCH_V = BuildConfig.DEBUG;
+    public static boolean LOG_SWITCH_D = BuildConfig.DEBUG;
+    public static boolean LOG_SWITCH_I = BuildConfig.DEBUG;
+    public static boolean LOG_SWITCH_W = BuildConfig.DEBUG;
+    public static boolean LOG_SWITCH_E = BuildConfig.DEBUG;
+    
     /**
      * print log: tag + msg
      */
-    public static void v(String tag, String msg) { if (BuildConfig.DEBUG) Log.v(tag, msg); }
+    public static void v(String tag, String msg) { if (LOG_SWITCH_V) Log.v(tag, msg); }
 
     /**
      * print log: tag + msg
      */
-    public static void d(String tag, String msg) { if (BuildConfig.DEBUG) Log.d(tag, msg); }
+    public static void d(String tag, String msg) { if (LOG_SWITCH_D) Log.d(tag, msg); }
 
     /**
      * print log: tag + msg
      */
-    public static void i(String tag, String msg) { if (BuildConfig.DEBUG) Log.i(tag, msg); }
+    public static void i(String tag, String msg) { if (LOG_SWITCH_I) Log.i(tag, msg); }
 
     /**
      * print log: tag + msg
      */
-    public static void w(String tag, String msg) { if (BuildConfig.DEBUG) Log.w(tag, msg); }
+    public static void w(String tag, String msg) { if (LOG_SWITCH_W) Log.w(tag, msg); }
 
     /**
      * print log: tag + msg
      */
-    public static void e(String tag, String msg) { if (BuildConfig.DEBUG) Log.e(tag, msg); }
+    public static void e(String tag, String msg) { if (LOG_SWITCH_E) Log.e(tag, msg); }
 
 
     /**
      * print log: class name tag + msg
      */
-    public static void v(String msg) { if (BuildConfig.DEBUG) v(generateTag(), msg); }
+    public static void v(String msg) { if (LOG_SWITCH_V) v(generateTag(), msg); }
 
     /**
      * print log: class name tag + msg
      */
-    public static void d(String msg) { if (BuildConfig.DEBUG) d(generateTag(), msg); }
+    public static void d(String msg) { if (LOG_SWITCH_D) d(generateTag(), msg); }
 
     /**
      * print log: class name tag + msg
      */
-    public static void i(String msg) { if (BuildConfig.DEBUG) i(generateTag(), msg); }
+    public static void i(String msg) { if (LOG_SWITCH_I) i(generateTag(), msg); }
 
     /**
      * print log: class name tag + msg
      */
-    public static void w(String msg) { if (BuildConfig.DEBUG) w(generateTag(), msg); }
+    public static void w(String msg) { if (LOG_SWITCH_W) w(generateTag(), msg); }
 
     /**
      * print log: class name tag + msg
      */
-    public static void e(String msg) { if (BuildConfig.DEBUG) e(generateTag(), msg); }
+    public static void e(String msg) { if (LOG_SWITCH_E) e(generateTag(), msg); }
 
     /**
      * print log: Class name tag + Thread name + Thread id + Method name + Msg
      */
     public static void v_m(String msg) {
-        if (BuildConfig.DEBUG) {
+        if (LOG_SWITCH_V) {
             final StackTraceElement st = getCallerElement();
             v(generateTag(st), packMethodMsg(st, msg));
         }
@@ -74,7 +80,7 @@ public class SLog {
      * print log: Class name tag + Thread name + Thread id + Method name + Msg
      */
     public static void d_m(String msg) {
-        if (BuildConfig.DEBUG) {
+        if (LOG_SWITCH_D) {
             final StackTraceElement st = getCallerElement();
             d(generateTag(st), packMethodMsg(st, msg));
         }
@@ -84,7 +90,7 @@ public class SLog {
      * print log: Class name tag + Thread name + Thread id + Method name + Msg
      */
     public static void i_m(String msg) {
-        if (BuildConfig.DEBUG) {
+        if (LOG_SWITCH_I) {
             final StackTraceElement st = getCallerElement();
             i(generateTag(st), packMethodMsg(st, msg));
         }
@@ -94,7 +100,7 @@ public class SLog {
      * print log: Class name tag + Thread name + Thread id + Method name + Msg
      */
     public static void w_m(String msg) {
-        if (BuildConfig.DEBUG) {
+        if (LOG_SWITCH_W) {
             final StackTraceElement st = getCallerElement();
             w(generateTag(st), packMethodMsg(st, msg));
         }
@@ -104,7 +110,7 @@ public class SLog {
      * print log: Class name tag + Thread name + Thread id + Method name + Msg
      */
     public static void e_m(String msg) {
-        if (BuildConfig.DEBUG) {
+        if (LOG_SWITCH_E) {
             final StackTraceElement st = getCallerElement();
             e(generateTag(st), packMethodMsg(st, msg));
         }
@@ -114,7 +120,7 @@ public class SLog {
      * print log: Class name tag + Thread name + Thread id + Method name + Position Line Number + Msg
      */
     public static void v_d(String msg) {
-        if (BuildConfig.DEBUG) {
+        if (LOG_SWITCH_V) {
             final StackTraceElement st = getCallerElement();
             v(generateTag(st), packPositionMsg(st, msg));
         }
@@ -124,7 +130,7 @@ public class SLog {
      * print log: Class name tag + Thread name + Thread id + Method name + Position Line Number + Msg
      */
     public static void d_d(String msg) {
-        if (BuildConfig.DEBUG) {
+        if (LOG_SWITCH_D) {
             final StackTraceElement st = getCallerElement();
             d(generateTag(st), packPositionMsg(st, msg));
         }
@@ -134,7 +140,7 @@ public class SLog {
      * print log: Class name tag + Thread name + Thread id + Method name + Position Line Number + Msg
      */
     public static void i_d(String msg) {
-        if (BuildConfig.DEBUG) {
+        if (LOG_SWITCH_I) {
             final StackTraceElement st = getCallerElement();
             i(generateTag(st), packPositionMsg(st, msg));
         }
@@ -144,7 +150,7 @@ public class SLog {
      * print log: Class name tag + Thread name + Thread id + Method name + Position Line Number + Msg
      */
     public static void w_d(String msg) {
-        if (BuildConfig.DEBUG) {
+        if (LOG_SWITCH_W) {
             final StackTraceElement st = getCallerElement();
             w(generateTag(st), packPositionMsg(st, msg));
         }
@@ -154,7 +160,7 @@ public class SLog {
      * print log: Class name tag + Thread name + Thread id + Method name + Position Line Number + Msg
      */
     public static void e_d(String msg) {
-        if (BuildConfig.DEBUG) {
+        if (LOG_SWITCH_E) {
             final StackTraceElement st = getCallerElement();
             e(generateTag(st), packPositionMsg(st, msg));
         }

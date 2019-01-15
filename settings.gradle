@@ -1,1 +1,1 @@
-include ':app', ':star-prompt'
+include ':app', ':star-prompt', ':sweet-alert-dialog'

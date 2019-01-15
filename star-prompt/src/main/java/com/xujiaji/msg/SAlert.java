@@ -1,6 +1,7 @@
 package com.xujiaji.msg;
 
-import android.content.Context;
+import android.app.Activity;
+import android.os.Build;
 
 import java.lang.ref.WeakReference;
 
@@ -16,9 +17,15 @@ public class SAlert {
         SAlert.proxy = proxy;
     }
 
-    public static Proxy with(Context context) {
+    public static Proxy with(Activity activity) {
         checkProxy();
-        proxy.context = new WeakReference<>(context);
+        if (proxy.activity != null && proxy.activity.get() != null) {
+            if (proxy.lastActivity != null && proxy.lastActivity.get() == activity) {
+                return proxy;
+            }
+            proxy.lastActivity = proxy.activity;
+        }
+        proxy.activity = new WeakReference<>(activity);
         return proxy;
     }
 
@@ -27,10 +34,21 @@ public class SAlert {
     }
 
     public abstract static class Proxy {
-        private WeakReference<Context> context;
-        private String msg;
-        private Callback yes;
-        private Callback no;
+        private WeakReference<Activity> lastActivity;
+        protected WeakReference<Activity> activity;
+        protected String title;
+        protected String msg;
+        protected Callback yes;
+        protected Callback no;
+
+        protected boolean useLastAlert() {
+            return lastActivity == activity;
+        }
+
+        public Proxy title(String title) {
+            this.title = title;
+            return this;
+        }
 
         public Proxy message(String msg) {
             this.msg = msg;
@@ -47,36 +65,60 @@ public class SAlert {
             return this;
         }
 
-        protected abstract void normal(Context context, String msg, Callback yes, Callback no);
+        protected abstract void onNormal();
 
-        protected abstract void success(Context context, String msg, Callback yes, Callback no);
+        protected abstract void onSuccess();
 
-        protected abstract void warning(Context context, String msg, Callback yes, Callback no);
+        protected abstract void onWarning();
 
-        protected abstract void error(Context context, String msg, Callback yes, Callback no);
+        protected abstract void onError();
+
+        protected abstract void onLoading();
+
+        protected abstract void onProgress(float progress);
+
 
         public void normal() {
-            if (context == null || context.get() == null) return;
-            normal(this.context.get(), this.msg, this.yes, this.no);
+            if (check()) return;
+            onNormal();
         }
 
         public void success() {
-            if (context == null || context.get() == null) return;
-            normal(this.context.get(), this.msg, this.yes, this.no);
+            if (check()) return;
+            onSuccess();
         }
 
         public void warning() {
-            if (context == null || context.get() == null) return;
-            normal(this.context.get(), this.msg, this.yes, this.no);
+            if (check()) return;
+            onWarning();
         }
 
         public void error() {
-            if (context == null || context.get() == null) return;
-            normal(this.context.get(), this.msg, this.yes, this.no);
+            if (check()) return;
+            onError();
+        }
+
+        public void loading() {
+            if (check()) return;
+            onLoading();
+        }
+
+        public void progress(float progress) {
+            if (check()) return;
+            onProgress(progress);
+        }
+
+        private boolean check() {
+            return activity == null || activity.get() == null || activity.get().isFinishing() || (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1 && activity.get().isDestroyed());
         }
     }
 
-    public interface Callback {
-        void call();
+    public abstract static class Callback {
+        public final String title;
+
+        public Callback(String title) {
+            this.title = title;
+        }
+        public abstract void call();
     }
 }
