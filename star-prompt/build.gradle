@@ -25,3 +25,16 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 }
+
+apply from: 'https://raw.githubusercontent.com/xujiaji/gradle-tools/master/bintray.gradle'
+apply from: 'https://raw.githubusercontent.com/xujiaji/gradle-tools/master/install.gradle'
+javadoc {
+    options{
+        encoding "UTF-8"
+        charSet 'UTF-8'
+        author true
+        version true
+        links "https://github.com/xujiaji/Starry"
+        title "StarPrompt Doc"
+    }
+}

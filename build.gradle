@@ -8,7 +8,8 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.3.0-rc02'
-        
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.6'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -24,4 +25,28 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'star-prompt'
+
+    publishedGroupId = 'com.github.xujiaji'
+    libraryName = 'star-prompt'
+    artifact = 'star-prompt'
+
+    libraryDescription = 'android prompt helper and utils'
+
+    siteUrl = 'https://github.com/xujiaji/Starry'
+    gitUrl = 'https://github.com/xujiaji/Starry.git'
+
+    libraryVersion = '0.0.1'
+
+    developerId = 'xujiaji'
+    developerName = 'xujiaji'
+    developerEmail = 'jiajixu@qq.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
 }
