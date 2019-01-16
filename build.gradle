@@ -30,19 +30,23 @@ task clean(type: Delete) {
 ext {
     annotationVersion = '1.0.0'
 
-    bintrayRepo = 'maven'
-    bintrayName = 'star-prompt'
+
+//    bintrayName = 'star-prompt'
+//    libraryName = 'star-prompt'
+//    artifact = 'star-prompt'
+//    libraryDescription = 'android prompt helper and utils, StarPrompt'
+//    libraryVersion = '0.0.1'
+
+    bintrayName = 'star-local'
+    libraryName = 'star-local'
+    artifact = 'star-local'
+    libraryDescription = 'android prompt helper and utils, StarLocal'
+    libraryVersion = '0.0.1'
 
     publishedGroupId = 'com.github.xujiaji'
-    libraryName = 'star-prompt'
-    artifact = 'star-prompt'
-
-    libraryDescription = 'android prompt helper and utils'
-
+    bintrayRepo = 'maven'
     siteUrl = 'https://github.com/xujiaji/Starry'
     gitUrl = 'https://github.com/xujiaji/Starry.git'
-
-    libraryVersion = '0.0.1'
 
     developerId = 'xujiaji'
     developerName = 'xujiaji'
