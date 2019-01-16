@@ -27,5 +27,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'com.github.GrenderG:Toasty:1.3.1'
     implementation project(':star-prompt')
+    implementation project(':star-local')
     implementation project(':sweet-alert-dialog')
 }

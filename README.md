@@ -1,5 +1,11 @@
 # Starry
-android developer utils and helpers
+Android开发过程中的工具类或帮助类整合，提高代码复用，降低模块三方库耦合
+
+## star-prompt
+消息提示相关工具和帮助类
+```
+compile 'com.github.xujiaji:star-prompt:0.0.1'
+```
 
 # License
 ```

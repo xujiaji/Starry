@@ -1,5 +1,7 @@
 package com.xujiaji.msg;
 
+import androidx.annotation.NonNull;
+
 /**
  * Toast Proxy
  */
@@ -10,26 +12,26 @@ public class SToast {
         throw new RuntimeException("cannot new SToast instance");
     }
 
-    public static void config(Proxy proxy) {
+    public static void config(@NonNull Proxy proxy) {
         SToast.proxy = proxy;
     }
 
-    public static void normal(String msg) {
+    public static void normal(@NonNull String msg) {
         checkProxy();
         proxy.normal(msg);
     }
 
-    public static void success(String msg) {
+    public static void success(@NonNull String msg) {
         checkProxy();
         proxy.success(msg);
     }
 
-    public static void error(String msg) {
+    public static void error(@NonNull String msg) {
         checkProxy();
         proxy.error(msg);
     }
 
-    public static void warning(String msg) {
+    public static void warning(@NonNull String msg) {
         checkProxy();
         proxy.warning(msg);
     }
@@ -39,9 +41,9 @@ public class SToast {
     }
 
     public interface Proxy {
-        void normal(String msg);
-        void success(String msg);
-        void error(String msg);
-        void warning(String msg);
+        void normal(@NonNull String msg);
+        void success(@NonNull String msg);
+        void error(@NonNull String msg);
+        void warning(@NonNull String msg);
     }
 }

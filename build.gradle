@@ -28,6 +28,8 @@ task clean(type: Delete) {
 }
 
 ext {
+    annotationVersion = '1.0.0'
+
     bintrayRepo = 'maven'
     bintrayName = 'star-prompt'
 

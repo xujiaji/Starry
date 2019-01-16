@@ -1,9 +1,12 @@
 package com.xujiaji.starry;
 
 import android.app.Application;
+import android.content.Context;
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.widget.Toast;
 
+import com.xujiaji.local.StarLocal;
 import com.xujiaji.msg.SAlert;
 import com.xujiaji.msg.SLog;
 import com.xujiaji.msg.SToast;
@@ -12,12 +15,13 @@ import com.xujiaji.msg.StarPrompt;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import es.dmoral.toasty.Toasty;
 
-public class MyApp extends Application implements StarPrompt.I {
+public class MyApp extends Application implements StarPrompt.I, StarLocal.I {
 
     @Override
     public void onCreate() {
         super.onCreate();
         StarPrompt.init(this);
+        StarLocal.init(this);
     }
 
     @Override
@@ -112,22 +116,22 @@ public class MyApp extends Application implements StarPrompt.I {
     public SToast.Proxy configToast() {
         return new SToast.Proxy() {
             @Override
-            public void normal(String msg) {
+            public void normal(@NonNull String msg) {
                 Toasty.normal(MyApp.this, msg).show();
             }
 
             @Override
-            public void success(String msg) {
+            public void success(@NonNull String msg) {
                 Toasty.success(MyApp.this, msg, Toast.LENGTH_LONG).show();
             }
 
             @Override
-            public void error(String msg) {
+            public void error(@NonNull String msg) {
                 Toasty.error(MyApp.this, msg, Toast.LENGTH_LONG).show();
             }
 
             @Override
-            public void warning(String msg) {
+            public void warning(@NonNull String msg) {
                 Toasty.warning(MyApp.this, msg, Toast.LENGTH_LONG).show();
             }
         };
@@ -136,5 +140,10 @@ public class MyApp extends Application implements StarPrompt.I {
     @Override
     public void configLog() {
         SLog.LOG_SWITCH_V = true;
+    }
+
+    @Override
+    public Context applicationContext() {
+        return this;
     }
 }

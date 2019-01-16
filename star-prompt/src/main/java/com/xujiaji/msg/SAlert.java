@@ -5,6 +5,8 @@ import android.os.Build;
 
 import java.lang.ref.WeakReference;
 
+import androidx.annotation.NonNull;
+
 public class SAlert {
 
     private static Proxy proxy;
@@ -13,11 +15,11 @@ public class SAlert {
         throw new RuntimeException("cannot new SAlert instance");
     }
 
-    public static void config(Proxy proxy) {
+    public static void config(@NonNull Proxy proxy) {
         SAlert.proxy = proxy;
     }
 
-    public static Proxy with(Activity activity) {
+    public static Proxy with(@NonNull Activity activity) {
         checkProxy();
         if (proxy.activity != null && proxy.activity.get() != null) {
             if (proxy.lastActivity != null && proxy.lastActivity.get() == activity) {
@@ -45,22 +47,22 @@ public class SAlert {
             return lastActivity == activity;
         }
 
-        public Proxy title(String title) {
+        public Proxy title(@NonNull String title) {
             this.title = title;
             return this;
         }
 
-        public Proxy message(String msg) {
+        public Proxy message(@NonNull String msg) {
             this.msg = msg;
             return this;
         }
 
-        public Proxy yes(Callback yes) {
+        public Proxy yes(@NonNull Callback yes) {
             this.yes = yes;
             return this;
         }
 
-        public Proxy no(Callback no) {
+        public Proxy no(@NonNull Callback no) {
             this.no = no;
             return this;
         }
@@ -116,7 +118,7 @@ public class SAlert {
     public abstract static class Callback {
         public final String title;
 
-        public Callback(String title) {
+        public Callback(@NonNull String title) {
             this.title = title;
         }
         public abstract void call();
