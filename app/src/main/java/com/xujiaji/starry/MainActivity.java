@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.xujiaji.local.SLocal;
+import com.xujiaji.local.SPref;
 import com.xujiaji.msg.SAlert;
 import com.xujiaji.msg.SLog;
 import com.xujiaji.msg.SToast;
@@ -16,6 +18,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         SLog.i_d("Hello world!!!");
+        SPref.put("key", "hello SPref");
+        String value = SLocal.get("key", String.class);
+        SLog.e_d("" + value);
     }
 
     public void onClickAlert(View view) {

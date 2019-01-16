@@ -26,7 +26,7 @@ public class SPref {
 
     public static <T> void put(@NonNull String key, @Nullable T value) {
         if (value == null) {
-            clearKey(key);
+            clear(key);
             return;
         }
         if (value instanceof String) {
@@ -56,28 +56,23 @@ public class SPref {
         }
     }
 
-    @Nullable
-    public static String getString(@NonNull String key) {
-        return SP().getString(key, null);
+    @SuppressWarnings("unchecked")
+    public static <T> T get(@NonNull String key, @NonNull Class<T> type) {
+        if (type == String.class) {
+            return (T) SP().getString(key, null);
+        } else if (type == Boolean.class) {
+            return (T) Boolean.valueOf(SP().getAll().get(key) instanceof Boolean && SP().getBoolean(key, false));
+        } else if (type == Integer.class) {
+            return (T) Integer.valueOf(SP().getAll().get(key) instanceof Integer ? SP().getInt(key, 0) : -1);
+        } else if (type == Long.class) {
+            return (T) Long.valueOf(SP().getLong(key, 0));
+        } else if (type == Float.class) {
+            return (T) Float.valueOf(SP().getFloat(key, 0));
+        }
+        return (T) getAll().get(key);
     }
 
-    public static boolean getBoolean(@NonNull String key) {
-        return SP().getAll().get(key) instanceof Boolean && SP().getBoolean(key, false);
-    }
-
-    public static int getInt(@NonNull String key) {
-        return SP().getAll().get(key) instanceof Integer ? SP().getInt(key, 0) : -1;
-    }
-
-    public static long getLong(@NonNull String key) {
-        return SP().getLong(key, 0);
-    }
-
-    public static float getFloat(@NonNull String key) {
-        return SP().getFloat(key, 0);
-    }
-
-    public static void clearKey(@NonNull String key) {
+    public static void clear(@NonNull String key) {
         editor().remove(key).apply();
     }
 
@@ -86,7 +81,7 @@ public class SPref {
         return SP().contains(key);
     }
 
-    public static void clearPrefs() {
+    public static void clearAll() {
         editor().clear().apply();
     }
 

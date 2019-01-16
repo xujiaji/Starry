@@ -6,11 +6,15 @@ import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.widget.Toast;
 
+import com.xujiaji.local.SLocal;
+import com.xujiaji.local.SPref;
 import com.xujiaji.local.StarLocal;
 import com.xujiaji.msg.SAlert;
 import com.xujiaji.msg.SLog;
 import com.xujiaji.msg.SToast;
 import com.xujiaji.msg.StarPrompt;
+
+import java.util.Map;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import es.dmoral.toasty.Toasty;
@@ -145,5 +149,40 @@ public class MyApp extends Application implements StarPrompt.I, StarLocal.I {
     @Override
     public Context applicationContext() {
         return this;
+    }
+
+    @Override
+    public SLocal.Proxy configLocal() {
+        return new SLocal.Proxy() {
+            @Override
+            public <T> void put(@NonNull String key, T value) {
+                SPref.put(key, value);
+            }
+
+            @Override
+            public <T> T get(@NonNull String key, @NonNull Class<T> type) {
+                return SPref.get(key, type);
+            }
+
+            @Override
+            public boolean isExist(@NonNull String key) {
+                return SPref.isExist(key);
+            }
+
+            @Override
+            public void clear(@NonNull String key) {
+                SPref.clear(key);
+            }
+
+            @Override
+            public void clearAll() {
+                SPref.clearAll();
+            }
+
+            @Override
+            public Map<String, ?> getAll() {
+                return SPref.getAll();
+            }
+        };
     }
 }
